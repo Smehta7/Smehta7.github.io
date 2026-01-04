@@ -398,7 +398,13 @@
                             ].map(filter => (
                                 <button
                                     key={filter.id}
-                                    onClick={() => setActiveSection(filter.id)}
+                                    onClick={() => {
+                                                    setActiveSection(filter.id);
+                                                    gtag('event', 'filter_click', {
+                                                        'event_category': 'navigation',
+                                                        'event_label': filter.label
+                                                    });
+                                                }}
                                     className={`flex items-center gap-2 px-6 py-2 rounded-full transition-all ${
                                         activeSection === filter.id
                                             ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
